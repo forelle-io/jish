@@ -1,11 +1,15 @@
 import * as React from 'react'
-import Layout from '../components/Layout'
+import DefaultLayout from '../layouts/Default'
+import { Button } from '@material-ui/core';
 
 const Index: React.FunctionComponent = () => {
   return (
-    <Layout title="Home">
+    <DefaultLayout title="Home">
       <h1>Hello Next.js 👋</h1>
-    </Layout>
+      <Button variant="contained">
+        Default
+      </Button>
+    </DefaultLayout>
   )
 }
 export default Index

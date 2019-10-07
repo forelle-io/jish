@@ -1,13 +1,13 @@
 import * as React from 'react'
-import Link from 'next/link'
 import Head from 'next/head'
+import Header from '../components/root/Header'
 type LayoutProps = {
   title?: string
 }
 const layoutStyle = {
-  margin: 20,
-  padding: 20,
-  border: '1px solid #DDD'
+  margin: 0,
+  padding: 0,
+  border: 'none'
 }
 const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
   <div style={layoutStyle}>
@@ -16,18 +16,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
-    <header>
-      <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-      </nav>
-    </header>
+    <Header/>
     {children}
   </div>
 )

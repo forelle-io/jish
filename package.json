@@ -11,12 +11,14 @@
     "test:coverage": "jest — coverage"
   },
   "dependencies": {
-    "next": "9.0.7",
-    "react": "16.10.1",
-    "react-dom": "16.10.1",
+    "@material-ui/core": "^4.5.0",
+    "@material-ui/icons": "^4.4.3",
     "@types/koa-bunyan-logger": "^2.1.0",
     "koa-bunyan-logger": "^2.1.0",
+    "next": "9.0.7",
     "pm2": "^3.5.0",
+    "react": "16.10.1",
+    "react-dom": "16.10.1",
     "styled-components": "^4.2.0"
   },
   "devDependencies": {

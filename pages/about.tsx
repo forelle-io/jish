@@ -1,5 +1,5 @@
 import React from 'react'
-import Layout from '../components/Layout'
+import DefaultLayout from '../layouts/Default'
 import Link from 'next/link'
 type PostLinkProps = {
   title?: string
@@ -15,12 +15,12 @@ const PostLink: React.FunctionComponent<PostLinkProps> = ({ title }) => {
 }
 const About: React.FunctionComponent = () => {
   return (
-    <Layout title="About">
+    <DefaultLayout title="About">
       <h1>This is About page ✌</h1>
       <PostLink title="Hello Next.js" />
       <PostLink title="Learn Next.js is awesome" />
       <PostLink title="Deploy apps with Zeit" />
-    </Layout>
+    </DefaultLayout>
   )
 }
 export default About
