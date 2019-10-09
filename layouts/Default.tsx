@@ -1,6 +1,7 @@
 import * as React from 'react'
 import Head from 'next/head'
 import Header from '../components/root/Header'
+import CssBaseLine from '@material-ui/core/CssBaseline';
 type LayoutProps = {
   title?: string
 }
@@ -16,6 +17,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
+    <CssBaseLine/>
     <Header/>
     {children}
   </div>
