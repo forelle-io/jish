@@ -1,0 +1,26 @@
+{
+    "name": "Forelle-IO",
+    "short_name": "Forelle",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "Fishing App",
+    "icons": [
+      {
+        "src": "/logos/192x192.png",
+        "type": "image/png",
+        "sizes": "192x192"
+      },
+      {
+        "src": "/logos/512x512.png",
+        "type": "image/png",
+        "sizes": "512x512"
+      }
+    ],
+    "related_applications": [{
+      "platform": "web"
+    }, {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=cheeaun.hackerweb"
+    }]
+  }

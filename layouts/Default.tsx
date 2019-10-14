@@ -16,6 +16,9 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
       <title>{title}</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <link rel="manifest" href="/static/manifest.json" />
+      <link rel="manifest" href="/static/site.webmanifest" />
+      <link rel="icon" type="image/x-icon" href="static/favicon.ico"/>
     </Head>
     <CssBaseLine/>
     <Header/>
