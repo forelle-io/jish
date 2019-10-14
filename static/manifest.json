@@ -5,6 +5,7 @@
     "display": "standalone",
     "background_color": "#fff",
     "description": "Fishing App",
+    "theme_color": "#CCC",
     "icons": [
       {
         "src": "/logos/192x192.png",
