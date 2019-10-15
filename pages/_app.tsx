@@ -18,7 +18,14 @@ export default withRedux(initializeStore, { debug: true })(
         }
       };
     }
-
+    componentDidMount() {
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker
+          .register('/workers/serviceWorker.js')
+          .then(() => console.log('service worker registered.'))
+          .catch(err => console.dir(err));
+      }
+    }
     render() {
       const { Component, pageProps, store } = this.props;
       return (

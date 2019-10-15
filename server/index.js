@@ -4,6 +4,7 @@ const { parse } = require('url')
 const Router = require('koa-router')
 const cache = require('koa-cache-lite');
 const { join } = require('path')
+const { createReadStream } = require('fs');
 
 const port = parseInt(process.env.PORT, 10) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -34,6 +35,9 @@ app.prepare().then(() => {
       if (rootStaticFiles.indexOf(parsedUrl.pathname) > -1) {
         const path = join(__dirname, 'static', parsedUrl.pathname)
         app.serveStatic(ctx.req, ctx.res, path)
+      } else if (parsedUrl.pathname === '/workers/serviceWorker.js') {
+        ctx.set('content-type', 'text/javascript');
+        createReadStream('./workers/serviceWorker.js').pipe(ctx.res);
       } else {
         await handle(ctx.req, ctx.res)
       }
