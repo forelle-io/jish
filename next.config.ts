@@ -1,6 +1,5 @@
-const withTypescript = require('@zeit/next-typescript')
-module.exports = withTypescript({
-  webpack(config, options) {
+export default require('@zeit/next-typescript')({
+  webpack(config) {
     return config
   }
 })
