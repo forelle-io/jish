@@ -1,7 +1,7 @@
 {
     "name": "Forelle-IO",
     "short_name": "Forelle",
-    "start_url": ".",
+    "start_url": "http://localhost:3001",
     "display": "standalone",
     "background_color": "#fff",
     "description": "Fishing App",
