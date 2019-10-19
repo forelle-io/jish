@@ -15,6 +15,7 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
     <Head>
       <title>{title}</title>
       <meta charSet="utf-8" />
+      <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'></link>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta name="theme-color" content="#CCC"/>
       <link rel="manifest" href="/static/manifest.json" />

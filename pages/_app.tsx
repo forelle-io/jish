@@ -26,6 +26,9 @@ export default withRedux(initializeStore, { debug: true })(
           <Provider store={store}>
             <Component {...pageProps} />
           </Provider>
+          <style jsx>{`
+            font-family: 'Roboto', sans-serif;
+          `}</style>
         </Container>
       );
     }
