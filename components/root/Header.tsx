@@ -4,8 +4,19 @@ import Box from '@material-ui/core/Box';
 import Link from 'next/link';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import Avatar from '@material-ui/core/Avatar';
+import Badge from '@material-ui/core/Badge';
+import Fab from '@material-ui/core/Fab';
+
+import Grid from '@material-ui/core/Grid';
+// import MenuItem from '@material-ui/core/MenuItem';
+// import Menu from '@material-ui/core/Menu';
+import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Router from 'next/router';
 import { useRouter } from 'next/router'
 // TODO:
@@ -37,6 +48,7 @@ const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     button: {
       margin: theme.spacing(1),
+      color: '#6C758A'
     },
     activeButton: {
       color: '#0077FF',
@@ -108,17 +120,40 @@ export default function PrimarySearchAppBar() {
           <Box style={{flexGrow: 1}}>
             
           </Box>
-          <Box>
-            <Button
-              variant="outlined"
+          <Box style={{marginRight: '42.5px'}}>
+            <Fab
+              variant="extended"
               color="primary"
-              startIcon={<AddIcon />}
+              size="medium"
+              style={{background: 'none', boxShadow: 'none', color: '#0077FF', border: '1px solid #0077FF'}}
             >
-              Добавить
-            </Button>
+              <AddIcon />
+              Создать
+            </Fab>
           </Box>
           <Box>
-            AAaaaaa
+              <IconButton style={{marginRight: '42.5px'}} aria-label="search" color="inherit">
+                <SearchIcon />
+              </IconButton>
+              <IconButton style={{marginRight: '42.5px'}} aria-label="show 17 new notifications" color="inherit">
+                <Badge badgeContent={17} color="secondary">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+          </Box>
+          <Box>
+            <Grid container justify="center" alignItems="center">
+              <Avatar alt="Remy Sharp" src="/static/avatar.jpeg"/>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                color="inherit"
+                size="small"
+              >
+                <ExpandMoreIcon />
+              </IconButton>
+            </Grid>
           </Box>       
         </Toolbar>
       </AppBar>
