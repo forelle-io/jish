@@ -9,10 +9,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import Avatar from '@material-ui/core/Avatar';
 import Badge from '@material-ui/core/Badge';
 import Fab from '@material-ui/core/Fab';
-
 import Grid from '@material-ui/core/Grid';
-// import MenuItem from '@material-ui/core/MenuItem';
-// import Menu from '@material-ui/core/Menu';
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button';
 import AddIcon from '@material-ui/icons/Add';
