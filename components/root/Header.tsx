@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { createStyles, makeStyles, Theme, withStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Link from 'next/link';
 import AppBar from '@material-ui/core/AppBar';
@@ -40,6 +40,36 @@ const headerLinksParams = [
     href: "/organizations"
   }
 ]
+
+const AvatarBadge = withStyles(() =>
+  createStyles({
+    badge: {
+      backgroundColor: '#44b700',
+      '&::after': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        borderRadius: '50%',
+        animation: '$ripple 1.2s infinite ease-in-out',
+        border: '1px solid #44b700',
+        content: '""',
+      },
+    },
+    '@keyframes ripple': {
+      '0%': {
+        transform: 'scale(.8)',
+        opacity: 1,
+      },
+      '100%': {
+        transform: 'scale(2.4)',
+        opacity: 0,
+      },
+    },
+  }),
+)(Badge);
+
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -140,7 +170,17 @@ export default function PrimarySearchAppBar() {
           </Box>
           <Box>
             <Grid container justify="center" alignItems="center">
-              <Avatar alt="Remy Sharp" src="/static/avatar.jpeg"/>
+              <AvatarBadge
+                overlap="circle"
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                variant="dot"
+              >
+                <Avatar alt="Remy Sharp" src="/static/avatar.jpeg"/>
+              </AvatarBadge>
+              
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
