@@ -1,14 +1,27 @@
-// import { combineRedusers } from 'redux'
-
+import { combineReducers } from 'redux'
+import * as types from './types';
 const initialState = {
     token: ''
 }
 
-export default function reduce(state = initialState, action: any = {}) {
+function loginUser(state = initialState, action: any) {
     switch (action.type) {
-        case 'SUCCESSFUL_LOGIN':
-            return {...state, token: action.token}
+        case types.LOGIN_SUCCESS:
+            return {
+                ...state,
+                token: action.payload
+            }
+        case types.LOGOUT_SUCCESS:
+                return {
+                    ...state,
+                    token: action.payload
+                }
+        
         default:
-            return state;
+            return state
     }
 }
+
+export default combineReducers({
+    loginUser
+})

@@ -12,10 +12,15 @@ import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
 import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
 import AddIcon from '@material-ui/icons/Add';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Router from 'next/router';
 import { useRouter } from 'next/router'
+import { useDispatch, useSelector } from 'react-redux'
+import { loginFetchData, logoutFetchData } from '../../store/auth/actions';
+
 // TODO:
 // Добавить описание и комментарии, написать типы для данных
 const headerLinksParams = [
@@ -130,7 +135,32 @@ const HeaderLinks = () => {
   return linkElements
 }
 
-export default function PrimarySearchAppBar() {
+function PrimarySearchAppBar() {
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const dispatch = useDispatch()
+  const token = useSelector(state => state.authReducer.loginUser.token)
+  const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+  const isMenuOpen = Boolean(anchorEl);
+  const renderMenu = (
+    <Menu
+      anchorEl={anchorEl}
+      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+      id={'profile-menu'}
+      keepMounted
+      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      open={isMenuOpen}
+      onClose={handleMenuClose}
+    >
+      <MenuItem onClick={() => dispatch(loginFetchData(''))}>Войти тест</MenuItem>
+      <MenuItem onClick={handleMenuClose}>{token}</MenuItem>
+      <MenuItem onClick={() => dispatch(logoutFetchData())}>Выйти тест</MenuItem>
+    </Menu>
+  );
 
   return (
       <AppBar position="static" color="default">
@@ -187,12 +217,16 @@ export default function PrimarySearchAppBar() {
                 aria-haspopup="true"
                 color="inherit"
                 size="small"
+                onClick={handleProfileMenuOpen}
               >
                 <ExpandMoreIcon />
               </IconButton>
             </Grid>
           </Box>       
         </Toolbar>
+        {renderMenu}
       </AppBar>
   );
 }
+
+export default PrimarySearchAppBar

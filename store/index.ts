@@ -1,42 +1,21 @@
-/*
-    TODO
-    Вынести редьюсеры и экшены в отдельные директории
-    Протащить в них методы апи
-*/
-
-
 import { createStore, applyMiddleware } from 'redux'
-// import { composeWithDevTools } from 'redux-devtools-extension'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import thunkMiddleware from 'redux-thunk'
+import { combineReducers } from 'redux'
+import authReducer from './auth/reduser'
 
-import * as ACTION_TYPES from './types';
-
-const rootInitialState = {
-    authToken: '',
-    refreshToken: ''
-  }
+const rootInitialState = {}
   
   
-  export const reducer = (state = rootInitialState, action) => {
-    switch (action.type) {
-      case ACTION_TYPES.USER_AUTH:
-        return Object.assign({}, state, {
-          lastUpdate: action.ts,
-          light: !!action.light
-        })
-      default:
-        return state
-    }
-  }
+  export const reducer = combineReducers({
+    authReducer,
+  })
   
-  export const getAuthToken = isServer => dispatch => {
-    return dispatch({ type: ACTION_TYPES.USER_AUTH, light: !isServer, ts: Date.now() })
-  }
   
   export function initializeStore (initialState = rootInitialState) {
     return createStore(
       reducer,
       initialState,
-      applyMiddleware(thunkMiddleware)
+      composeWithDevTools(applyMiddleware(thunkMiddleware))
     )
   }
