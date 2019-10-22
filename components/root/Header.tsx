@@ -139,6 +139,7 @@ function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const dispatch = useDispatch()
   const token = useSelector(state => state.authReducer.loginUser.token)
+  const isOnline = useSelector(state => state.authReducer.loginUser.isOnline)
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -146,6 +147,7 @@ function PrimarySearchAppBar() {
     setAnchorEl(null);
   };
   const isMenuOpen = Boolean(anchorEl);
+  
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -156,7 +158,7 @@ function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={() => dispatch(loginFetchData(''))}>Войти тест</MenuItem>
+      <MenuItem>Войти тест</MenuItem>
       <MenuItem onClick={handleMenuClose}>{token}</MenuItem>
       <MenuItem onClick={() => dispatch(logoutFetchData())}>Выйти тест</MenuItem>
     </Menu>
@@ -200,17 +202,22 @@ function PrimarySearchAppBar() {
           </Box>
           <Box>
             <Grid container justify="center" alignItems="center">
-              <AvatarBadge
-                overlap="circle"
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                variant="dot"
-              >
-                <Avatar alt="Remy Sharp" src="/static/avatar.jpeg"/>
-              </AvatarBadge>
-              
+              {isOnline ?
+                <AvatarBadge
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  variant="dot"
+                >
+                  <Avatar alt="Remy Sharp" src="/static/avatar.jpeg"/>
+                </AvatarBadge>
+              : <div>
+                  <Button onClick={() => dispatch(loginFetchData(''))} color="inherit">Login</Button>
+                  <Button color="inherit">Registration</Button>
+                </div>
+              }
               <IconButton
                 aria-label="account of current user"
                 aria-controls="menu-appbar"

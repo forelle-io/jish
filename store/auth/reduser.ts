@@ -1,7 +1,9 @@
 import { combineReducers } from 'redux'
 import * as types from './types';
+
 const initialState = {
-    token: ''
+    token: '',
+    isOnline: false
 }
 
 function loginUser(state = initialState, action: any) {
@@ -9,12 +11,14 @@ function loginUser(state = initialState, action: any) {
         case types.LOGIN_SUCCESS:
             return {
                 ...state,
-                token: action.payload
+                token: action.payload,
+                isOnline: true
             }
         case types.LOGOUT_SUCCESS:
                 return {
                     ...state,
-                    token: action.payload
+                    token: action.payload,
+                    isOnline: false
                 }
         
         default:
