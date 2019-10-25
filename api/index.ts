@@ -1,14 +1,3 @@
-import axios from 'axios'
+import * as authApi from './auth'
 
-export const ForelleApi = {
-    module_1: {
-        request_1: async () => {
-            const { data } = await axios({
-                method: 'GET',
-                url: 'api_url'
-            })
-
-            return data
-        }
-    }
-}
+export const auth = authApi

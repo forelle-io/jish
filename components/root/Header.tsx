@@ -17,6 +17,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import AddIcon from '@material-ui/icons/Add';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import Router from 'next/router';
+import Modal from '@material-ui/core/Modal'
 import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginFetchData, logoutFetchData } from '../../store/auth/actions';
@@ -137,6 +138,7 @@ const HeaderLinks = () => {
 
 function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [openLoginModal, setOpenLoginModal] = React.useState(false)
   const dispatch = useDispatch()
   const token = useSelector(state => state.authReducer.loginUser.token)
   const isOnline = useSelector(state => state.authReducer.loginUser.isOnline)
@@ -146,6 +148,12 @@ function PrimarySearchAppBar() {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
+  const handleLoginModalOpen = () => {
+    setOpenLoginModal(true)
+  }
+  const handleLoginModalClose = () => {
+    setOpenLoginModal(false)
+  }
   const isMenuOpen = Boolean(anchorEl);
   
   const renderMenu = (
@@ -158,12 +166,12 @@ function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem>Войти тест</MenuItem>
+      <MenuItem>Войти</MenuItem>
       <MenuItem onClick={handleMenuClose}>{token}</MenuItem>
-      <MenuItem onClick={() => dispatch(logoutFetchData())}>Выйти тест</MenuItem>
+      <MenuItem onClick={() => dispatch(logoutFetchData())}>Выйти</MenuItem>
     </Menu>
   );
-
+  
   return (
       <AppBar position="static" color="default">
         <Toolbar>
@@ -179,30 +187,36 @@ function PrimarySearchAppBar() {
           <Box style={{flexGrow: 1}}>
             
           </Box>
-          <Box style={{marginRight: '42.5px'}}>
-            <Fab
-              variant="extended"
-              color="primary"
-              size="medium"
-              style={{background: 'none', boxShadow: 'none', color: '#0077FF', border: '1px solid #0077FF'}}
-            >
-              <AddIcon />
-              Создать
-            </Fab>
-          </Box>
-          <Box>
+          {isOnline ? 
+            <Box style={{marginRight: '42.5px'}}>
+              <Fab
+                variant="extended"
+                color="primary"
+                size="medium"
+                style={{background: 'none', boxShadow: 'none', color: '#0077FF', border: '1px solid #0077FF'}}
+              >
+                <AddIcon />
+                Создать
+              </Fab>
+            </Box>
+              : null }
+            <Box>
               <IconButton style={{marginRight: '42.5px'}} aria-label="search" color="inherit">
                 <SearchIcon />
               </IconButton>
-              <IconButton style={{marginRight: '42.5px'}} aria-label="show 17 new notifications" color="inherit">
-                <Badge badgeContent={17} color="secondary">
-                  <NotificationsIcon />
-                </Badge>
-              </IconButton>
+              {isOnline ? 
+                <IconButton style={{marginRight: '42.5px'}} aria-label="show 17 new notifications" color="inherit">
+                  <Badge badgeContent={17} color="secondary">
+                    <NotificationsIcon />
+                  </Badge>
+                </IconButton>
+              : null }
+
           </Box>
           <Box>
             <Grid container justify="center" alignItems="center">
-              {isOnline ?
+              {isOnline ? 
+              <Box>
                 <AvatarBadge
                   overlap="circle"
                   anchorOrigin={{
@@ -213,24 +227,32 @@ function PrimarySearchAppBar() {
                 >
                   <Avatar alt="Remy Sharp" src="/static/avatar.jpeg"/>
                 </AvatarBadge>
-              : <div>
-                  <Button onClick={() => dispatch(loginFetchData(''))} color="inherit">Login</Button>
+                <IconButton
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  color="inherit"
+                  size="small"
+                  onClick={handleProfileMenuOpen}
+                >
+                  <ExpandMoreIcon />
+                </IconButton>
+              </Box>
+              : <Box>
+                  <Button onClick={handleLoginModalOpen} color="inherit">Login</Button>
                   <Button color="inherit">Registration</Button>
-                </div>
+                </Box>
               }
-              <IconButton
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-                size="small"
-                onClick={handleProfileMenuOpen}
-              >
-                <ExpandMoreIcon />
-              </IconButton>
             </Grid>
           </Box>       
         </Toolbar>
+        <Modal
+          aria-labelledby="Login title"
+          aria-describedby="Login description"
+          open={openLoginModal}
+          onClose={handleLoginModalClose}>
+            <button onClick={() => dispatch(loginFetchData({phone: '8977', password: 'qwerty'}))}>Start Login!</button>
+        </Modal>
         {renderMenu}
       </AppBar>
   );

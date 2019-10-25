@@ -1,4 +1,5 @@
 import * as types from './types';
+import { auth } from '../../api/'
 
 export function loginError(errorObj) {
     return {
@@ -30,14 +31,11 @@ export function logoutSuccess(logoutData) {
 
 export function loginFetchData(loginData) {
     return (dispatch) => {
-        loginData === true; // TEST TEST TEST
-        Promise.resolve({
-            data: {
-                token: 'lkejgoswejkfgwelkflew'
-            }
-        }).then((response) => {
+        auth.login(loginData)
+        .then((response) => {
             dispatch(loginSuccess(response.data.token))
-        }).catch((error) => {
+        })
+        .catch((error) => {
             dispatch(loginError(error))
         })
     }
