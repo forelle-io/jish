@@ -14,6 +14,8 @@ import VisibilityIcon from '@material-ui/icons/Visibility'
 import Typography from '@material-ui/core/Typography'
 import CardContent from '@material-ui/core/CardContent'
 import Divider from '@material-ui/core/Divider'
+// import Router from 'next/router';
+import Link from 'next/link';
 import { makeStyles, createStyles, withStyles } from '@material-ui/core/styles';
 
 interface Tag {
@@ -83,6 +85,11 @@ const useStyles = makeStyles({
     postWrapper: {
         borderRadius: 16
     },
+    postAvatar: {
+        '&:hover': {
+            cursor: 'pointer'
+        }
+    },
     postContent: {
         fontSize: 14,
         color: '#1B263D',
@@ -127,16 +134,25 @@ const Post: React.FunctionComponent<PostProps> = ({ postData }) => {
     <Card className={classes.postWrapper}>
         <CardHeader
             avatar={
-                <AvatarBadge
-                    overlap="circle"
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    variant="dot"
+                <Link
+                    href={`/user?id=${postData.author.id}`}
+                    as={`/user/${postData.author.id}`}
                 >
-                    <Avatar alt="Remy Sharp" src={postData.author.avatar}/>
-                </AvatarBadge>
+                    <AvatarBadge
+                        overlap="circle"
+                        anchorOrigin={{
+                            vertical: 'top',
+                            horizontal: 'right',
+                        }}
+                        variant="dot"
+                    >
+                        <Avatar
+                            alt="Remy Sharp"
+                            className={classes.postAvatar}
+                            src={postData.author.avatar}
+                        />
+                    </AvatarBadge>
+                </Link>
             }
             action={
                 <IconButton aria-label="settings">

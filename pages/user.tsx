@@ -46,9 +46,6 @@ const AvatarBadge = withStyles(() =>
 )(Badge);
 
 const useStyles = makeStyles({
-    pageContent: {
-        padding: "28px 148px 28px 148px;"
-    },
     userInfo: {
         width: 312,
         height: 364,
@@ -121,7 +118,7 @@ const User: NextPage<UserPageProps> = ({ name }) => {
 
   return (
     <DefaultLayout title={`User ${id} ${name}`}>
-      <Grid container spacing={3} direction="row" justify="center" alignItems="stretch" className={classes.pageContent}>
+      <Grid container spacing={3} direction="row" justify="center" alignItems="stretch">
         <Grid item>
             <Grid spacing={3} container direction="column" justify="flex-start" alignItems="center">
                 <Grid item>

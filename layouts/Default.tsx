@@ -7,8 +7,7 @@ type LayoutProps = {
 }
 const layoutStyle = {
   margin: 0,
-  padding: 0,
-  border: 'none'
+  border: 'none',
 }
 const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
   <div style={layoutStyle}>
@@ -25,7 +24,9 @@ const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
     </Head>
     <CssBaseLine/>
     <Header/>
-    {children}
+    <main style={{padding: "28px 148px 28px 148px"}}>
+      {children}
+    </main>
   </div>
 )
 export default Layout
