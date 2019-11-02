@@ -25,7 +25,10 @@ cache.configure({
 app.prepare().then(() => {
   const server = new Koa()
   const router = new Router()
-
+  router.get('/user/:id', async (ctx) => {
+    await app.render(ctx.req, ctx.res, '/user', {id: ctx.params.id})
+    ctx.respond = false
+  })
   router.all('*', async ctx => {
     const parsedUrl = parse(ctx.req.url, true)
       const rootStaticFiles = [

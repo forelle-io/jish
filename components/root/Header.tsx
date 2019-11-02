@@ -240,6 +240,7 @@ function PrimarySearchAppBar() {
               </Box>
               : <Box>
                   <Button onClick={handleLoginModalOpen} color="inherit">Login</Button>
+                  <Link href="/user?id=1234" as="user/1234">User</Link>
                   <Button color="inherit">Registration</Button>
                 </Box>
               }
