@@ -2,7 +2,6 @@ import React from 'react'
 import DefaultLayout from '../layouts/Default'
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
 import TextField from '@material-ui/core/TextField'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
@@ -12,9 +11,15 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction'
 import Avatar from '@material-ui/core/Avatar'
 import Badge from '@material-ui/core/Badge'
 import Fab from '@material-ui/core/Fab';
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select';
-import InputLabel from '@material-ui/core/InputLabel';
+import Card from '@material-ui/core/Card'
+import CardHeader from '@material-ui/core/CardHeader'
+import CardActions from '@material-ui/core/CardActions'
+import MenuItem from '@material-ui/core/MenuItem';
+import RefreshIcon from '@material-ui/icons/Refresh'
+import Typography from '@material-ui/core/Typography'
+import CardContent from '@material-ui/core/CardContent'
+import Divider from '@material-ui/core/Divider'
+import IconButton from '@material-ui/core/IconButton'
 
 
 import { makeStyles, withStyles, createStyles } from '@material-ui/core/styles';
@@ -22,13 +27,15 @@ import { makeStyles, withStyles, createStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   userListWrapper: {
     width: 648,
-    borderRadius: 16,
-    padding: "20px 24px 20px 24px"
+    borderRadius: 16
   },
   userListFormWrapper: {
     width: 312,
-    borderRadius: 16,
-    padding: "20px 24px 20px 24px"
+    borderRadius: 16
+  },
+  userListFormTitleCaption: {
+    fontSize: 16,
+    fontWeight: 'bold'
   },
   textInput: {
     fontSize: 14,
@@ -76,12 +83,13 @@ const Users: React.FunctionComponent = () => {
     <DefaultLayout title="Пользователи">
       <Grid spacing={3} container direction="row" justify="center" alignItems="flex-start">
         <Grid item>
-          <Paper className={classes.userListWrapper}>
-            <Grid spacing={2} container direction="column" justify="flex-start" alignItems="stretch">
-              <Grid item>
-                <TextField fullWidth className={classes.textInput} variant="outlined" label="Поиск пользователей"/>
-              </Grid>
-              <Grid item>
+            <Card className={classes.userListWrapper}>
+              <CardHeader
+                title={
+                  <TextField fullWidth variant="outlined" className={classes.textInput} label="Поиск пользователей"/>
+                }>
+              </CardHeader>
+              <CardContent>
                 <List>
                   {[0, 1, 2, 3, 4, 5].map((value) => {
                     return (
@@ -115,57 +123,121 @@ const Users: React.FunctionComponent = () => {
                             variant="extended"
                             color="primary"
                             size="small"
+                            children={
+                              <Typography style={{textTransform: 'none'}} component="span">
+                                Подписаться
+                              </Typography>
+                            }
                             style={{background: 'none', boxShadow: 'none', color: '#0077FF', border: '1px solid #0077FF'}}
-                          >
-                            Подписаться
-                          </Fab>
+                          />
                         </ListItemSecondaryAction>
+                        
                       </ListItem>
                     )
                   })}
                 </List>
-              </Grid>
-            </Grid>
-          </Paper>
+              </CardContent>
+          </Card>
         </Grid>
         <Grid item>
-          <Paper className={classes.userListFormWrapper}>
-            <Grid spacing={2} container direction="column" justify="flex-start" alignItems="stretch">
-              <Grid item>
-                Фильтр
-              </Grid>
-              <Grid item>
-                <Grid spacing={2} container direction="column" justify="flex-start" alignItems="stretch">
-                  <Grid item>
-                    <FormControl fullWidth variant="outlined">
-                      <InputLabel>
-                        Населенный пункт
-                      </InputLabel>
-                      <Select
+          <Card className={classes.userListFormWrapper}>
+                <CardHeader
+                    action={
+                        <IconButton>
+                            <RefreshIcon style={{color: "#0077FF"}}/>
+                        </IconButton>
+                    }
+                    title={
+                        <Typography className={classes.userListFormTitleCaption} component="h2">
+                            Фильтр
+                        </Typography>
+                    }
+                >
+                </CardHeader>
+                <Divider/>
+                <CardContent>
+                  
+                  <Grid spacing={2} container direction="column" justify="flex-start" alignItems="stretch">
+                    <Grid item>
+                      <TextField
                         fullWidth
-                        native>
-                          <option value="">Москва</option>
-                          <option value="">Москва</option>
-                          <option value="">Москва</option>
-                      </Select>
-                    </FormControl>
+                        select
+                        variant="outlined"
+                        label="Населенный пункт"
+                        >
+                          <MenuItem key={1} value={1}>
+                            Москва
+                          </MenuItem>
+                          <MenuItem key={2} value={2}>
+                            Санкт-Петербург
+                          </MenuItem>
+                        </TextField>
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        fullWidth
+                        select
+                        variant="outlined"
+                        label="Предпочитаемая рыба"
+                        >
+                          <MenuItem key={1} value={1}>
+                            Карп
+                          </MenuItem>
+                          <MenuItem key={2} value={2}>
+                            Щука
+                          </MenuItem>
+                        </TextField>
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        fullWidth
+                        select
+                        variant="outlined"
+                        label="Техника ловли"
+                        >
+                          <MenuItem key={1} value={1}>
+                            Супер-техника
+                          </MenuItem>
+                          <MenuItem key={2} value={2}>
+                            Такая себе
+                          </MenuItem>
+                        </TextField>
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        fullWidth
+                        select
+                        variant="outlined"
+                        label="Пол"
+                        >
+                          <MenuItem key={1} value={1}>
+                            Мужской
+                          </MenuItem>
+                          <MenuItem key={2} value={2}>
+                            Женский
+                          </MenuItem>
+                        </TextField>
+                    </Grid>
+                    <Grid item>
+                      <TextField
+                        fullWidth
+                        select
+                        variant="outlined"
+                        label="Возраст"
+                        >
+                          <MenuItem key={1} value={1}>
+                            18-24
+                          </MenuItem>
+                          <MenuItem key={2} value={2}>
+                            25-30
+                          </MenuItem>
+                        </TextField>
+                    </Grid>
                   </Grid>
-                  <Grid item>
-                    <TextField fullWidth variant="outlined" label="Предпочитаемая рыба"/>
-                  </Grid>
-                  <Grid item>
-                    <TextField fullWidth variant="outlined" label="Поиск пользователей"/>
-                  </Grid>
-                  <Grid item>
-                    <TextField fullWidth variant="outlined" label="Поиск пользователей"/>
-                  </Grid>
-                  <Grid item>
-                    <TextField fullWidth variant="outlined" label="Поиск пользователей"/>
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Paper>
+                </CardContent>
+                <CardActions>
+                </CardActions>
+              </Card>
         </Grid>
       </Grid> 
     </DefaultLayout>

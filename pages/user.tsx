@@ -1,6 +1,6 @@
 import React from 'react'
 import DefaultLayout from '../layouts/Default'
-import { useRouter } from 'next/router'
+// import { useRouter } from 'next/router'
 import { NextPage } from 'next' //NextPageContext
 import { makeStyles, createStyles, withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper'
@@ -103,9 +103,9 @@ const useStyles = makeStyles({
 
 
 const User: NextPage<UserPageProps> = ({ name }) => {
-  const router = useRouter();
+//   const router = useRouter();
   const classes = useStyles()
-  const { id } = router.query
+//   const { id } = router.query
   
   const userPosts = [1, 2, 3, 4, 5, 6].map(() => {
       return (
@@ -117,7 +117,7 @@ const User: NextPage<UserPageProps> = ({ name }) => {
 
 
   return (
-    <DefaultLayout title={`User ${id} ${name}`}>
+    <DefaultLayout title={`${name}`}>
       <Grid container spacing={3} direction="row" justify="center" alignItems="stretch">
         <Grid item>
             <Grid spacing={3} container direction="column" justify="flex-start" alignItems="center">
