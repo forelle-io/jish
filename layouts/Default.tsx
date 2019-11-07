@@ -2,6 +2,8 @@ import * as React from 'react'
 import Head from 'next/head'
 import Header from '../components/root/Header'
 import CssBaseLine from '@material-ui/core/CssBaseline';
+import { StylesProvider } from '@material-ui/core/styles';
+
 type LayoutProps = {
   title?: string
 }
@@ -11,22 +13,25 @@ const layoutStyle = {
 }
 const Layout: React.FunctionComponent<LayoutProps> = ({ children, title }) => (
   <div style={layoutStyle}>
-    <Head>
-      <title>{title}</title>
-      <meta charSet="utf-8" />
-      <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'></link>
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <meta name="theme-color" content="#CCC"/>
-      <link rel="manifest" href="/static/manifest.json" />
-      <link rel="apple-touch-icon" href="/static/logs/192x192.png" />
-      <link rel="manifest" href="/static/site.webmanifest" />
-      <link rel="icon" type="image/x-icon" href="static/favicon.ico"/>
-    </Head>
-    <CssBaseLine/>
-    <Header/>
-    <main style={{padding: "28px 148px 28px 148px"}}>
-      {children}
-    </main>
+    <StylesProvider injectFirst>
+      <Head>
+        <title>{title}</title>
+        <meta charSet="utf-8" />
+        <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'></link>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="theme-color" content="#CCC"/>
+        <link rel="manifest" href="/static/manifest.json" />
+        <link rel="apple-touch-icon" href="/static/logs/192x192.png" />
+        <link rel="manifest" href="/static/site.webmanifest" />
+        <link rel="stylesheet" href="/index.css" />
+        <link rel="icon" type="image/x-icon" href="static/favicon.ico"/>
+      </Head>
+      <CssBaseLine/>
+      <Header/>
+      <main style={{padding: "28px 148px 28px 148px"}}>
+        {children}
+      </main>
+    </StylesProvider>
   </div>
 )
 export default Layout

@@ -1,5 +1,5 @@
 import React from 'react';
-import { createStyles, makeStyles, Theme, withStyles } from '@material-ui/core/styles';
+import { createStyles, withStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Link from 'next/link';
 import AppBar from '@material-ui/core/AppBar';
@@ -22,26 +22,33 @@ import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { loginFetchData, logoutFetchData } from '../../store/auth/actions';
 
+// import HeaderStyles from './styles.css'
+
 // TODO:
 // Добавить описание и комментарии, написать типы для данных
 const headerLinksParams = [
   {
+    id: 0,
     label: "Пользователи",
     href: "/users"
   },
   {
+    id: 1,
     label: "Отчеты",
     href: "/reports"
   },
   {
+    id: 2,
     label: "Выезды",
     href: "/departures"
   },
   {
+    id: 3,
     label: "Водоемы",
     href: "/ponds"
   },
   {
+    id: 4,
     label: "Организации",
     href: "/organizations"
   }
@@ -77,47 +84,23 @@ const AvatarBadge = withStyles(() =>
 )(Badge);
 
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    button: {
-      margin: theme.spacing(1),
-      color: '#6C758A'
-    },
-    activeButton: {
-      color: '#0077FF',
-      backgroundColor: '#ECF5FF',
-      fontWeight: 800,
-      "&::before": {
-        width: '6px',
-        height: '6px',
-        borderRadius: '3px',
-        backgroundColor: '#0077FF',
-        position: 'absolute',
-        bottom: -10,
-        content: "''"
-      }
-    },
-    input: {
-      display: 'none',
-    },
-  }),
-);
+// const useStyles = makeStyles((theme: Theme) =>
+//   createStyles({
+
+//   }),
+// );
 
 const HeaderLink = ({ children, href }) => {
   const router = useRouter()
-  const classes = useStyles()
 
   const isActiveLink = router.pathname === href
 
   return (
     <Button
-      className={isActiveLink ? classes.button + ' ' + classes.activeButton : classes.button}
+      className={isActiveLink ? 'button button-active' : 'button'}
       onClick={() => Router.push(href)}
     >
       {children}
-      {/* <style jsx>
-
-      </style> */}
     </Button>
   )
 }
@@ -128,7 +111,7 @@ const HeaderLinks = () => {
   
   const linkElements = headerLinksParams.map(link => {
     return (
-      <HeaderLink href={link.href}>
+      <HeaderLink key={link.id} href={link.href}>
         {link.label}
       </HeaderLink>
     )
@@ -174,6 +157,7 @@ function PrimarySearchAppBar() {
   
   return (
       <AppBar position="static" color="default">
+
         <Toolbar>
           <Box>
             <Link href="/">
@@ -244,7 +228,7 @@ function PrimarySearchAppBar() {
                 </Box>
               }
             </Grid>
-          </Box>       
+          </Box>  
         </Toolbar>
         <Modal
           aria-labelledby="Login title"

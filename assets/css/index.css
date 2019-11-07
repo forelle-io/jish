@@ -1,0 +1,18 @@
+.button {
+    color: #6C758A;
+  }
+  
+  .button-active {
+      color: #0077FF;
+      background: #ECF5FF;
+      font-weight: 800;
+  }
+  .button-active::before {
+      width: 6px;
+      height: 6px;
+      border-radius: 3px;
+      background: #0077FF;
+      position: absolute;
+      bottom: -10px;
+      content: "";
+  }

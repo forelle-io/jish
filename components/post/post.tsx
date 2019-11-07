@@ -124,9 +124,9 @@ const useStyles = makeStyles({
 const Post: React.FunctionComponent<PostProps> = ({ postData }) => {
   const classes = useStyles()
 
-  const postTags = postData.tags.map((tag) => {
+  const postTags = postData.tags.map((tag, index) => {
       return (
-        <Grid item className={classes.postTagElement}>{tag.name} - {tag.weight}{tag.unit}</Grid>
+        <Grid item key={index} className={classes.postTagElement}>{tag.name} - {tag.weight}{tag.unit}</Grid>
       )
   })
 
