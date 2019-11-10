@@ -1,0 +1,53 @@
+.userInfo {
+    width: 312px;
+    height: 364px;
+    border-radius: 16px;
+}
+.userConfig {
+    width: 312px;
+    border-radius: 16px;
+    padding: 24px;
+}
+.userName {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+.userCounter {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1B263D;
+}
+.userCounterCaption {
+    font-size: 14px;
+    color: #6C758A;
+}
+.userCity {
+    font-size: 14px;
+    color: #6C758A;
+    margin-bottom: 20px;
+}
+.userPost {
+    width: 648px;
+}
+.userAvatarWrapper {
+    margin-top: 32px;
+    margin-bottom: 18px;
+}
+.userAvatar {
+    width: 98px;
+    height: 98px;
+}
+.userConfigSectionCaption {
+    font-size: 14px;
+    font-weight: bold;
+}
+.userConfigSectionElement {
+    padding: 8px 12px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background: #F6F6F6;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #6C758A;
+}

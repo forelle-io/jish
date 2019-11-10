@@ -60,10 +60,9 @@ app.prepare().then(() => {
     } else if (parsedUrl.pathname === '/serviceWorker.js') {
       ctx.set('content-type', 'text/javascript');
       createReadStream('./workers/serviceWorker.js').pipe(ctx.res);
-    } else if (parsedUrl.pathname === '/index.css') {
-      console.log('ITS CSS BRO!!!!')
+    } else if (parsedUrl.pathname.includes('.css')) {
       ctx.set('content-type', 'text/css');
-      createReadStream('./assets/css/index.css').pipe(ctx.res);
+      createReadStream(`./assets/css${parsedUrl.pathname}`).pipe(ctx.res);
     } else {
       await handle(ctx.req, ctx.res)
     }

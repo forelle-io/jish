@@ -1,3 +1,8 @@
+@import "/post/index.css";
+
+@import "/pages/reports.css";
+@import "/pages/user.css";
+
 .button {
     color: #6C758A;
   }

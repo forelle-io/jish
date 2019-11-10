@@ -1,0 +1,58 @@
+@keyframes ripple {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(10);
+    opacity: 0;
+  }
+}
+.MuiBadge-dot {
+  background: #44b700 !important;
+}
+.MuiBadge-dot::after {
+  position: absolute;
+  border-radius: 50%;
+  animation: ripple 1.2s infinite ease-in-out;
+  border: 1px solid #44b700;
+  background: #44b700;
+  content: "";
+}
+.postWrapper {
+  border-radius: 16px;
+}
+.postAvatar {
+}
+.postAvatar:hover {
+  cursor: pointer;
+}
+.postContent {
+  font-size: 14px;
+  color: #1b263d;
+  margin-bottom: 16px;
+}
+.headerAuthor {
+  font-size: 16px;
+  font-weight: bold;
+  color: #1b263d;
+}
+.postTitle {
+  font-size: 20px;
+  font-weight: bold;
+  color: #1b263d;
+  margin-bottom: 10px;
+}
+.postActionButton {
+  font-size: 14px;
+  color: #6c758a;
+}
+.postTagElement {
+  padding: 8px 12px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  background: #f6f6f6;
+  border-radius: 8px;
+  font-size: 14px;
+  color: #6c758a;
+}

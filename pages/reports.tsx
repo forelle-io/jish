@@ -2,24 +2,13 @@ import React from 'react'
 import DefaultLayout from '../layouts/Default'
 import Grid from '@material-ui/core/Grid'
 
-import { makeStyles } from '@material-ui/core/styles';
-
 import Post from '../components/post/post'
-
-const useStyles = makeStyles({
-  userPost: {
-      width: 648
-  },
-})
-
 
 
 const Reports: React.FunctionComponent = () => {
-  const classes = useStyles()
-  
   const userPosts = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((...args) => {
     return (
-      <Grid item key={args[1]} className={classes.userPost}>
+      <Grid item key={args[1]} className={'userPost'}>
           <Post postData={userPublicationsData[0]}/>
       </Grid>
     )
