@@ -2,6 +2,7 @@
 
 @import "/pages/reports.css";
 @import "/pages/user.css";
+@import "/pages/edit.css";
 
 .button {
     color: #6C758A;

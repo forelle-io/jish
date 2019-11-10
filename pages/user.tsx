@@ -9,6 +9,7 @@ import Fab from '@material-ui/core/Fab';
 import Box from '@material-ui/core/Box'
 import Badge from '@material-ui/core/Badge'
 
+import Router from 'next/router';
 import Post from '../components/post/post'
 
 interface UserPageProps {
@@ -26,7 +27,6 @@ const User: NextPage<UserPageProps> = ({ name }) => {
         </Grid>
       )
   })
-
 
   return (
     <DefaultLayout title={`${name}`}>
@@ -62,6 +62,7 @@ const User: NextPage<UserPageProps> = ({ name }) => {
                                             variant="extended"
                                             color="primary"
                                             size="small"
+                                            onClick={() => Router.push('/edit')}
                                             style={{background: 'none', boxShadow: 'none', color: '#0077FF', border: '1px solid #0077FF'}}
                                         >
                                             Редактировать

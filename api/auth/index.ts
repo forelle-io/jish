@@ -1,5 +1,6 @@
 import { loginUrl, registrationUrl } from '../urls';
 import axios from 'axios'
+import https from 'https'
 
 interface loginData {
     phone: string,
@@ -14,10 +15,14 @@ interface registrationData {
 }
 
 export const login = (loginData: loginData) => {
+    const agent = new https.Agent({
+        rejectUnauthorized: false
+    })
     return axios({
         method: 'POST',
         url: loginUrl,
-        data: loginData
+        data: loginData,
+        httpsAgent: agent
     }).then((response) => {
         return response.data
     }).catch((error) => {
