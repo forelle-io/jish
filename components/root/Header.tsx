@@ -235,7 +235,7 @@ function PrimarySearchAppBar() {
           aria-describedby="Login description"
           open={openLoginModal}
           onClose={handleLoginModalClose}>
-            <button onClick={() => dispatch(loginFetchData({phone: '8977', password: 'qwerty'}))}>Start Login!</button>
+            <button onClick={() => dispatch(loginFetchData({struct_Type: 'm', phone: 456345345534}))}>Start Login!</button>
         </Modal>
         {renderMenu}
       </AppBar>

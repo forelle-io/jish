@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid'
 import Avatar from '@material-ui/core/Avatar';
 import Box from '@material-ui/core/Box'
 import Badge from '@material-ui/core/Badge'
+import Button from '@material-ui/core/Button'
 import InputMask from 'react-input-mask'
 
 import Card from '@material-ui/core/Card'
@@ -19,6 +20,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from '@material-ui/pickers';
+import Router from 'next/router';
 
 import TextField from '@material-ui/core/TextField';
 
@@ -31,7 +33,16 @@ const ProfileEdit: React.FunctionComponent = () => {
         setSelectedDate(date);
     };
 
-    const [tech] = React.useState([])
+    const [tech, setTech] = React.useState<string[]>([])
+    const [favoriteFish, setFavoriteFish] = React.useState<string[]>([])
+
+    const handleChangeFavoriteFish = (event: React.ChangeEvent<{ value: unknown }>) => {
+        setFavoriteFish(event.target.value as string[]);
+    }
+
+    const handleChangeTech = (event: React.ChangeEvent<{ value: unknown }>) => {
+        setTech(event.target.value as string[]);
+    }
 
   return (
     <DefaultLayout title="Редактирование профиля">
@@ -90,7 +101,7 @@ const ProfileEdit: React.FunctionComponent = () => {
             </Grid>  
         </Grid>
         <Grid item>
-            <Grid spacing={3} container direction="column" justify="flex-start" alignItems="center">
+            <Grid spacing={3} container direction="column" justify="flex-start" alignItems="stretch">
                 <Grid item>
                     <Card className={'editSection'}>
                         <CardHeader
@@ -190,7 +201,7 @@ const ProfileEdit: React.FunctionComponent = () => {
                         <CardHeader
                             title={
                                 <Typography className={'headerAuthor'} component="h2">
-                                    Техника ловли
+                                    Предпочитаемая рыба
                                 </Typography>
                             }
                         >
@@ -205,7 +216,8 @@ const ProfileEdit: React.FunctionComponent = () => {
                                         select
                                         SelectProps={{multiple: true}}
                                         fullWidth
-                                        value={tech}
+                                        onChange={handleChangeFavoriteFish}
+                                        value={favoriteFish}
                                         margin="normal"
                                         variant="outlined"
                                     >
@@ -223,6 +235,53 @@ const ProfileEdit: React.FunctionComponent = () => {
                             </Grid>
                         </CardContent>
                     </Card>
+                </Grid>
+                <Grid item>
+                    <Card className={'editSection'}>
+                        <CardHeader
+                            title={
+                                <Typography className={'headerAuthor'} component="h2">
+                                    Техника ловли
+                                </Typography>
+                            }
+                        >
+                        </CardHeader>
+                        <CardContent>
+                            <Grid spacing={1} container direction="column" justify="flex-start" alignItems="stretch">
+                                <Grid item>
+                                    <TextField
+                                        className={"profileFormInput"}
+                                        id="lastnameField"
+                                        label="Техника"
+                                        select
+                                        SelectProps={{multiple: true}}
+                                        fullWidth
+                                        onChange={handleChangeTech}
+                                        value={tech}
+                                        margin="normal"
+                                        variant="outlined"
+                                    >
+                                        <MenuItem key={1} value={1}>
+                                            Удочка
+                                        </MenuItem>
+                                        <MenuItem key={2} value={2}>
+                                            Спиннинг
+                                        </MenuItem>
+                                        <MenuItem key={3} value={3}>
+                                            Донная снасть
+                                        </MenuItem>
+                                    </TextField>
+                                </Grid> 
+                            </Grid>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item>
+                    <Box display="flex" flexDirection="row" justifyContent="flex-end">
+                        <Button variant="contained" color="primary" onClick={() => Router.push('/user/1')}>
+                            Сохранить
+                        </Button>
+                    </Box>
                 </Grid>
             </Grid> 
         </Grid>

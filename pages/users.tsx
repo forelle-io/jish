@@ -22,7 +22,7 @@ import Divider from '@material-ui/core/Divider'
 import IconButton from '@material-ui/core/IconButton'
 
 
-import { makeStyles, withStyles, createStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles({
   userListWrapper: {
@@ -48,35 +48,6 @@ const useStyles = makeStyles({
   },
 })
 
-const AvatarBadge = withStyles(() =>
-  createStyles({
-    badge: {
-      backgroundColor: '#44b700',
-      '&::after': {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        borderRadius: '50%',
-        animation: '$ripple 1.2s infinite ease-in-out',
-        border: '1px solid #44b700',
-        content: '""',
-      },
-    },
-    '@keyframes ripple': {
-      '0%': {
-        transform: 'scale(.8)',
-        opacity: 1,
-      },
-      '100%': {
-        transform: 'scale(2.4)',
-        opacity: 0,
-      },
-    },
-  }),
-)(Badge);
-
 const Users: React.FunctionComponent = () => {
   const classes = useStyles()
   return (
@@ -99,12 +70,13 @@ const Users: React.FunctionComponent = () => {
                               href={`/user?id=${value}`}
                               as={`/user/${value}`}
                           >
-                              <AvatarBadge
+                              <Badge
                                   overlap="circle"
                                   anchorOrigin={{
                                       vertical: 'top',
                                       horizontal: 'right',
                                   }}
+                                  className={'avatarBadge'}
                                   variant="dot"
                               >
                                   <Avatar
@@ -112,7 +84,7 @@ const Users: React.FunctionComponent = () => {
                                       alt="Remy Sharp"
                                       src="/static/avatar.jpeg"
                                   />
-                              </AvatarBadge>
+                              </Badge>
                           </Link>
                         </ListItemAvatar>
                         <ListItemText secondary="Москва">

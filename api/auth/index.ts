@@ -3,8 +3,8 @@ import axios from 'axios'
 import https from 'https'
 
 interface loginData {
-    phone: string,
-    password: string
+    struct_type: string,
+    phone: number
 }
 
 interface registrationData {
