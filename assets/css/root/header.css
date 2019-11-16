@@ -1,0 +1,13 @@
+.login-modal {
+    
+}
+
+.login-wrapper {
+    position: relative;
+    width: 400px;
+    top: 30vh;
+    left: calc(50vw - 200px);
+}
+.login-wrapper:focus {
+    outline: none;
+}

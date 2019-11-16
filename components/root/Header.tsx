@@ -14,8 +14,11 @@ import SearchIcon from '@material-ui/icons/Search'
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
+import Paper from '@material-ui/core/Paper'
 import AddIcon from '@material-ui/icons/Add';
+import Typography from '@material-ui/core/Typography'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import TextField from '@material-ui/core/TextField'
 import Router from 'next/router';
 import Modal from '@material-ui/core/Modal'
 import { useRouter } from 'next/router'
@@ -233,9 +236,37 @@ function PrimarySearchAppBar() {
         <Modal
           aria-labelledby="Login title"
           aria-describedby="Login description"
+          className="login-modal"
           open={openLoginModal}
-          onClose={handleLoginModalClose}>
-            <button onClick={() => dispatch(loginFetchData({struct_Type: 'm', phone: 456345345534}))}>Start Login!</button>
+          onClose={handleLoginModalClose}
+        >
+          <Paper className="login-wrapper">
+            <Grid container spacing={2} direction="column" justify="center" alignItems="center">
+              <Grid item>
+                <img src="/static/logos/Forelle.io.png" alt="" width="200px;"/>
+              </Grid>
+              <Grid item>
+                <Typography component="h2">
+                  Авторизация
+                </Typography>
+              </Grid>
+              <Grid item>
+                <TextField
+                  variant="outlined"
+                  label="Телефон"
+                >
+                </TextField>
+              </Grid>
+              <Grid item>
+                <Button onClick={
+                  () => dispatch(loginFetchData({struct_type: 'm', phone: 456345345534}))
+                  }
+                >
+                  Войти
+                </Button>
+              </Grid>
+            </Grid>
+          </Paper>
         </Modal>
         {renderMenu}
       </AppBar>
