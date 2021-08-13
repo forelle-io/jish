@@ -25,7 +25,7 @@
     "koa-cache-lite": "^3.8.8",
     "koa-sslify": "^4.0.3",
     "lru-cache": "^5.1.1",
-    "next": "9.1.2",
+    "next": "11.1.0",
     "next-redux-wrapper": "^4.0.1",
     "pm2": "^4.1.2",
     "react": "16.11.0",
